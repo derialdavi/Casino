@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/account.css">
+    <link rel="stylesheet" href="css/checkbox.css">
+
+    <script src="changeType.js"></script>
+    
+    <title>Casino | Account</title>
+
+</head>
+<body>
+    <div class="card">
+
+        <form action="/home" method="get">
+            <button><<</button>
+        </form>
+
+        <div class="img">
+            <center>
+            <form action="changeProfilePic.php"class="picform" method="post" enctype="multipart/form-data">
+                    <img src="public\img\user\default\default_user_image.png" alt="immagine non trovata">
+                    <p>Cambia foto profilo</p>
+
+                    <input type="file" name="file" accept=".png, .jpg" required>
+                    <input type="submit" name="changePic" value="Conferma" class="change">
+
+                </form>
+            </center>
+        </div>
+
+        <div class="info">
+            <table>
+
+                <tr>
+                    <td><h2>Account</h2></td>
+                </tr>
+                {{ciao}}
+                {{!-- {% if key == 'money' %}
+                {% endif %}
+
+                {% if key == 'password' %}
+                <tr>
+                    <td>{{key}}</td>
+                </tr>
+                <td>
+                    <input type="password" id="pwd" class="infoin" name="{{key}}" value="{{value}}" disabled>              
+                </td>
+                <td>
+                    <label>
+                        <input type="checkbox" id="check">
+                        <span></span>
+                        <i class="indicator"></i>
+                    </label>
+                </td>
+                {% endif %}
+
+                {% if key != 'password' and key != 'money' %}
+                <tr>
+                    <td>{{key}}</td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="text" class="infoin" name="{{key}}" value="{{value}}" disabled>
+                    </td>
+                </tr>
+                {% endif %}
+
+                {% endfor %} --}}
+
+            </table>
+        </div>
+
+        <div class="conto">
+
+            <form action="aggiungiSoldi.php" method="post">
+
+                <table id="conto">
+
+                    <tr>
+                        <td><h2>Conto</h2></td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <p>
+                                Conto attuale: &euro;  cioa {{userDatas.money}}
+                            </p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <input type="number" min="0" class="contoin" id="soldi" name="soldi">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <input type="submit" class="contoin" value="Aggiungi soldi" name="add">
+                        </td>
+                    </tr>
+                </table>
+
+            </form>
+        
+        </div>
+    </div>
+
+    <div class="delete">
+
+        <form action="deleteAccount.php" method="post">
+
+            <input type="submit" value="Elimina account" name="delete" class="deletein">
+
+        </form>
+
+    </div>
+
+</body>
+</html>

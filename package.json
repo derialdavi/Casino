@@ -1,0 +1,23 @@
+{
+  "name": "Casino",
+  "version": "1.0.0",
+  "private": true,
+  "description": "This is a web app where you can play poker, blackjack or slot machines without having money irl :)",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Davide Ficarra",
+  "license": "ISC",
+  "dependencies": {
+    "debug": "^4.3.4",
+    "express": "^4.18.2",
+    "express-mysql-session": "^2.1.8",
+    "express-session": "^1.17.3",
+    "hbs": "^4.2.0",
+    "http-errors": "^2.0.0",
+    "js-sha256": "^0.9.0",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1"
+  }
+}
