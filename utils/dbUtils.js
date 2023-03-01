@@ -34,14 +34,17 @@ function dbConnection(host, user, password, db_name) {
  * @param {User} user 
  */
 async function addUserToDb(con, user) {
-    let sql = 'INSERT INTO `users`(name, surname, username, email, password, birth) VALUES (?)';
+    let sql = 'INSERT INTO `users`(name, surname, username, email, password, birth, money, image, role) VALUES (?)';
     let values = [
         user.name,
         user.surname,
         user.username,
         user.email,
         user.password,
-        user.birth
+        user.birth,
+        user.money,
+        user.image,
+        user.role
     ];
     con.query(sql, [values], (err, result) => {
         if (err) throw err;
@@ -80,13 +83,15 @@ function getUser(con, email) {
                 reject(err);
             } else {
                 resolve(new MySqlUser(
-                    result[0].id,
                     result[0].name,
                     result[0].surname,
                     result[0].username,
                     result[0].email,
                     result[0].password,
-                    result[0].birth
+                    result[0].birth,
+                    result[0].money,
+                    result[0].image,
+                    result[0].role
                 ));
             }
         });

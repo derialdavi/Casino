@@ -19,12 +19,15 @@ USE `casino_db` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `casino_db`.`users` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NOT NULL,
-  `surname` VARCHAR(45) NOT NULL,
-  `username` VARCHAR(45) NOT NULL,
-  `email` VARCHAR(45) NOT NULL,
+  `name` VARCHAR(20) NOT NULL,
+  `surname` VARCHAR(20) NOT NULL,
+  `username` VARCHAR(20) NOT NULL,
+  `email` VARCHAR(30) NOT NULL,
   `password` MEDIUMTEXT NOT NULL,
-  `birth` VARCHAR(45) NOT NULL,
+  `birth` DATE NOT NULL,
+  `money` INT UNSIGNED NOT NULL,
+  `image` BLOB NOT NULL,
+  `role` VARCHAR(10) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
   UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE)

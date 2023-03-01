@@ -89,9 +89,11 @@ router.get('/register', (req, res) => {
 
 router.post('/registerValidation', urlencodedParser, async (req, res) => {
     const { name, surname, username, email, password, birth } = req.body;
-    if (name.length >= 2 && surname.length >= 2 &&
-        validationUtils.isValidEmail(email) && validationUtils.isStrongPwd(password) &&
-        validationUtils.isAdult(birth)) {
+    let user = new User(name, surname, username, email, password, birth);
+
+    if (user.name.length >= 2 && user.surname.length >= 2 &&
+        user.isValidEmail(email) && user.isStrongPwd(password) &&
+        user.isAdult(birth)) {
 
         // Check if email is already registered in the databse
         if (await dbUtils.checkIfUserInDb(con, email)) {
@@ -99,12 +101,11 @@ router.post('/registerValidation', urlencodedParser, async (req, res) => {
         }
 
         // Encrypying password
-        const newPassword = validationUtils.encrypt(password);
-
-        let user = new User(name, surname, username, email, newPassword, birth);
+        const encryptedPassword = validationUtils.encrypt(password);
+        let mySqlUser = new MySqlUser(user.name, user.surname, user.username, user.email, encryptedPassword, user.birth);
 
         try {
-            await dbUtils.addUserToDb(con, user);
+            await dbUtils.addUserToDb(con, mySqlUser);
             return res.redirect('/');
         }
         catch {
@@ -115,9 +116,9 @@ router.post('/registerValidation', urlencodedParser, async (req, res) => {
         console.log('errore:\n');
         console.log(name.length >= 2);
         console.log(surname.length >= 2);
-        console.log(validationUtils.isValidEmail(email));
-        console.log(validationUtils.isStrongPwd(password));
-        console.log(validationUtils.isAdult(birth));
+        console.log(user.isValidEmail(email));
+        console.log(user.isStrongPwd(password));
+        console.log(user.isAdult(birth));
         return res.redirect('/register');
     }
 
